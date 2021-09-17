@@ -39,4 +39,8 @@ public class CategoryDTO implements Serializable {
         this.name = name;
     }
 
+    public Category toModel() {
+        return new Category(this.getId(), this.getName());
+    }
+
 }

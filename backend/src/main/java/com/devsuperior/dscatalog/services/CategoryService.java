@@ -32,4 +32,10 @@ public class CategoryService {
 
         return new CategoryDTO(category);
     }
+
+    @Transactional
+    public CategoryDTO insert(CategoryDTO dto) {
+        Category entity = repository.save(dto.toModel());
+        return new CategoryDTO(entity);
+    }
 }
