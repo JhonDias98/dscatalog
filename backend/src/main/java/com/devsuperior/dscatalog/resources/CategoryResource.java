@@ -20,6 +20,7 @@ public class CategoryResource {
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> findAll() {
         List<CategoryDTO> list = service.findAll();
+
         return ResponseEntity.ok().body(list);
     }
 
@@ -41,5 +42,11 @@ public class CategoryResource {
                 .toUri();
 
         return ResponseEntity.created(uri).body(request);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryDTO> update(@PathVariable Long id, @RequestBody CategoryDTO request) {
+        request = service.update(id, request);
+        return ResponseEntity.ok().body(request);
     }
 }
