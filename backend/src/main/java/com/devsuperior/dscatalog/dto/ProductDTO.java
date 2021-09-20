@@ -70,4 +70,8 @@ public class ProductDTO implements Serializable {
     public List<CategoryDTO> getCategories() {
         return categories;
     }
+
+    public Product toModel() {
+        return new Product();
+    }
 }
