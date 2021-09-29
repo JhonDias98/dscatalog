@@ -53,6 +53,27 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void deleteShouldDeleteObjectWhenIdExists() {
+
+        repository.deleteById(existingId);
+        Optional<Product> result = repository.findById(existingId);
+
+        assertFalse(result.isPresent());
+    }
+
+    @Test
+    void deleteShouldThrowEmptyResultDataAccessExceptionWhenIdDoesNotExist() {
+
+        assertThrows(EmptyResultDataAccessException.class, () -> repository.deleteById(nonExistingId));
+    }
+
+    /*
+    Implementar os seguintes testes em ProductRepositoryTest:
+    findById deveria
+        retornar um Optional<Product> não vazio quando o id existir
+        retornar um Optional<Product> vazio quando o id não existir
+     */
+    @Test
     void FindShouldFindOptionalWhenIdExist() {
         Optional<Product> result = repository.findById(existingId);
 
@@ -66,23 +87,6 @@ class ProductRepositoryTest {
         Optional<Product> result = repository.findById(nonExistingId);
 
         assertTrue(result.isEmpty());
-    }
-
-    @Test
-    void deleteShouldDeleteObjectWhenIdExists() {
-
-        repository.deleteById(existingId);
-        Optional<Product> result = repository.findById(existingId);
-
-        assertFalse(result.isPresent());
-    }
-
-    @Test
-    void deleteShouldThrowEmptyResultDataAccessExceptionWhenIdDoesNotExist() {
-
-        assertThrows(EmptyResultDataAccessException.class, () -> {
-            repository.deleteById(nonExistingId);
-        });
     }
 
 }
