@@ -1,7 +1,10 @@
 package com.devsuperior.dscatalog.dto;
 
+import com.devsuperior.dscatalog.services.validation.UserInsertValid;
+
 import javax.validation.constraints.NotBlank;
 
+@UserInsertValid
 public class UserInsertDTO extends UserDTO{
 
     @NotBlank(message = "Campo obrigatório")
